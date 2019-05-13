@@ -12,6 +12,8 @@ mumuki.load(function () {
   var $speechTabs = $('.mu-kids-character-speech-bubble-tabs > li:not(.separator)');
   var $defaultSpeechTabName = 'description';
   var $texts = $bubble.children(availableTabs.join(", "));
+  var $hintButton = $('[data-target="hint"]');
+  var $descriptionButton = $('[data-target="description"]');
 
   function floatFromPx(value) {
     return parseFloat(value.substring(0, value.length - 2));
@@ -253,6 +255,10 @@ mumuki.load(function () {
     mumuki.presenterCharacter.playAnimation('talk', mumuki.kids._getCharaterImage());
   }
 
+  function animateHint() {
+    mumuki.presenterCharacter.playAnimation('hint', mumuki.kids._getCharaterImage());
+  }
+
   mumuki.kids.resultAction.passed = mumuki.kids._showOnSuccessPopup;
   mumuki.kids.resultAction.passed_with_warnings = mumuki.kids._showOnCharacterBubble;
 
@@ -290,6 +296,8 @@ mumuki.load(function () {
 
     $nextSpeech.click(showNextParagraph);
     $prevSpeech.click(showPrevParagraph);
+    $hintButton.click(animateHint);
+    $descriptionButton.click(animateSpeech);
 
     // States initial resizing
 
